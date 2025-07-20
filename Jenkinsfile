@@ -18,25 +18,31 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                dir('angular-helloworld-on-ec2') {
-                    sh 'npm ci'
-                }
+                sh '''
+                    #!/bin/bash
+                    cd angular-helloworld-on-ec2/
+                    npm ci
+                 '''
             }
         }
 
         stage('Run Tests') {
             steps {
-                dir('angular-helloworld-on-ec2') {
-                    sh 'npx ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."'
-                }
+                sh '''
+                    #!/bin/bash
+                    cd angular-helloworld-on-ec2/
+                    npx ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."
+                 '''
             }
         }
 
         stage('Build App') {
             steps {
-                dir('angular-helloworld-on-ec2') {
-                    sh 'npx ng build --configuration production'
-                }
+                sh '''
+                    #!/bin/bash
+                    cd angular-helloworld-on-ec2/
+                    npx ng build --configuration production
+                 '''
             }
         }
 
