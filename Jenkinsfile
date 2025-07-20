@@ -25,7 +25,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
-                    cd angular-helloworld-on-ec2/'
+                    cd angular-helloworld-on-ec2/
                     ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."
                 '''
             }
@@ -34,8 +34,8 @@ pipeline {
         stage('Build App') {
             steps {
               sh '''
-                  cd angular-helloworld-on-ec2/'
-                  ng build --configuration production'
+                  cd angular-helloworld-on-ec2/
+                  ng build --configuration production
               '''
             }
         }
