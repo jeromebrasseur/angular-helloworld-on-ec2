@@ -1,6 +1,6 @@
 # Deploy Angular HelloWorld on EC2 instance
 
-<p align="center"><img src="img/EKS-Terraform.jpg" width="50%"></p>
+<p align="center"><img src="img/angular-cicd.png" width="50%"></p>
 
 ----
 
@@ -34,6 +34,8 @@ sudo npm install -g @angular/cli
 ```
 sudo apt update
 sudo apt install nginx
+
+sudo chown -R jenkins:jenkins /var/www/html
 ```
 
 ## Create EKS cluster
