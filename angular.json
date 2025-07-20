@@ -19,6 +19,7 @@
           "options": {
             "outputPath": "dist/angular-hello-world",
             "index": "src/index.html",
+	    "main": "src/main.ts",
 	    "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
