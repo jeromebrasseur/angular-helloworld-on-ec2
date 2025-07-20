@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone Git Repository') {
             steps {
-                sh 'git clone https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
+                sh 'git pull https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
             }
         }
 
