@@ -21,21 +21,19 @@ chmod +x install_jenkins.sh
 ./install_jenkins.sh
 ```
 
-##### Install Terraform
+##### Install Node.js and Angular CLI
 
 ```
-TF_VERSION=$(curl -sL https://releases.hashicorp.com/terraform/index.json | jq -r '.versions[].builds[].version' | grep -v 'rc|beta|alpha' | tail -1)
-
-curl -LO "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
-unzip terraform_${TF_VERSION}_linux_amd64.zip
-sudo mv -f terraform /usr/local/bin/
-rm terraform_${TF_VERSION}_linux_amd64.zip
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+sudo npm install -g @angular/cli
 ```
 
-##### Connect Terraform with AWS
+##### Install Nginx
 
 ```
-aws configure
+sudo apt update
+sudo apt install nginx
 ```
 
 ## Create EKS cluster
