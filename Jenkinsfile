@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        NODE_ENV = 'production'
         PATH = "/usr/local/bin:/usr/bin:/bin:$PATH"
     }
 
