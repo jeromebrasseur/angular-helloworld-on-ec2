@@ -34,10 +34,10 @@ pipeline {
         stage('Deploy to Nginx') {
             steps {
                 // Nettoyage de l'ancien contenu
-                sh 'rm -rf /var/www/html/*'
+                sh 'sudo rm -rf /var/www/html/*'
 
                 // Copie du nouveau build
-                sh 'cp -r dist/angular-helloworld-on-ec2/* /var/www/html/'
+                sh 'sudo cp -r angular-helloworld-on-ec2/dist/angular-hello-world/* /var/www/html/'
             }
         }
     }
