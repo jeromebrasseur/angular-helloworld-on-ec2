@@ -18,34 +18,34 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci'
+                dir('angular-helloworld-on-ec2') {
+                    sh 'npm ci'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh '''
-                    cd angular-helloworld-on-ec2/
-                    ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."
-                '''
+                dir('angular-helloworld-on-ec2') {
+                    sh 'npx ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."'
+                }
             }
         }
 
         stage('Build App') {
             steps {
-              sh '''
-                  cd angular-helloworld-on-ec2/
-                  ng build --configuration production
-              '''
+                dir('angular-helloworld-on-ec2') {
+                    sh 'npx ng build --configuration production'
+                }
             }
         }
 
         stage('Deploy to Nginx') {
             steps {
-                // Nettoyage de l'ancien contenu
+                // Nettoyage ancien contenu
                 sh 'sudo rm -rf /var/www/html/*'
 
-                // Copie du nouveau build
+                // Copie du nouveau build (adapter le chemin si besoin)
                 sh 'sudo cp -r angular-helloworld-on-ec2/dist/angular-hello-world/browser/* /var/www/html/'
             }
         }
