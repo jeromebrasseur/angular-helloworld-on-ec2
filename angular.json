@@ -18,7 +18,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/angular-hello-world",
-	    "browser": "src/main.ts",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
