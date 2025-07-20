@@ -1,59 +1,49 @@
-# AngularHelloWorld
+# Deploy Angular HelloWorld on EC2 instance
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.1.
+<p align="center"><img src="img/EKS-Terraform.jpg" width="50%"></p>
 
-## Development server
+----
 
-To start a local development server, run:
+This repo provides the steps to deploy Angular HelloWorld on EC2 instance using Jenkins. Jenkins is an open-source automation server tool. It helps automate the build, testing, and deployment aspects of software development, and facilitates continuous integration and continuous delivery.
 
-```bash
-ng serve
+----
+
+## Prerequisites
+
+##### Install Jenkins
+
+```
+nano install_jenkins.sh
+# collez le script, puis Ctrl+O, Entrée, Ctrl+X
+
+chmod +x install_jenkins.sh
+
+./install_jenkins.sh
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+##### Install Terraform
 
-## Code scaffolding
+```
+TF_VERSION=$(curl -sL https://releases.hashicorp.com/terraform/index.json | jq -r '.versions[].builds[].version' | grep -v 'rc|beta|alpha' | tail -1)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+curl -LO "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+unzip terraform_${TF_VERSION}_linux_amd64.zip
+sudo mv -f terraform /usr/local/bin/
+rm terraform_${TF_VERSION}_linux_amd64.zip
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+##### Connect Terraform with AWS
 
-```bash
-ng generate --help
+```
+aws configure
 ```
 
-## Building
+## Create EKS cluster
 
-To build the project run:
-
-```bash
-ng build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+git clone https://github.com/jeromebrasseur/deploy-eks-using-terraform.git
+cd deploy-eks-using-terraform
+terraform init
+terraform plan
+terraform apply
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
