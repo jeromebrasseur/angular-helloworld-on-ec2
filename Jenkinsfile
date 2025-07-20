@@ -3,13 +3,14 @@ pipeline {
 
     environment {
         NODE_ENV = 'production'
+        PATH = "/usr/local/bin:/usr/bin:/bin:$PATH"
     }
 
     stages {
 
         stage('Clone Git Repository') {
             steps {
-                sh 'git pull https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
+                checkout scm
             }
         }
 
