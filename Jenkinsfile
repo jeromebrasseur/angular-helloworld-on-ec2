@@ -7,9 +7,9 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Clone Git Repository') {
             steps {
-                git url: 'https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
+                sh 'git clone https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
             }
         }
 
