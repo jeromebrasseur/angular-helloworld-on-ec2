@@ -9,7 +9,10 @@ pipeline {
 
         stage('Clone Git Repository') {
             steps {
-                sh 'git pull https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
+                sh '''
+                    rm -rf angular-helloworld-on-ec2
+                    git clone https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git
+                '''
             }
         }
 
@@ -21,14 +24,19 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'cd angular-helloworld-on-ec2/'
-                sh 'ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."'
+                sh '''
+                    cd angular-helloworld-on-ec2/'
+                    sh 'ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."'
+                '''
             }
         }
 
         stage('Build App') {
             steps {
-                sh 'ng build --configuration production'
+              sh '''
+                  cd angular-helloworld-on-ec2/'
+                  ng build --configuration production'
+              '''
             }
         }
 
