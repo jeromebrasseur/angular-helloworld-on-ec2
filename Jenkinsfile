@@ -9,40 +9,25 @@ pipeline {
 
         stage('Clone Git Repository') {
             steps {
-                sh '''
-                    rm -rf angular-helloworld-on-ec2
-                    git clone https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git
-                '''
+                sh 'git url: https://github.com/jeromebrasseur/angular-helloworld-on-ec2.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-              sh '''
-                    #!/bin/bash
-                    cd angular-helloworld-on-ec2/
-                    npm ci
-                '''
+              sh 'npm ci'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh '''
-                    #!/bin/bash
-                    cd angular-helloworld-on-ec2/
-                    npx ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."
-                 '''
+                sh 'npx ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."'
             }
         }
 
         stage('Build App') {
             steps {
-                sh '''
-                    #!/bin/bash
-                    cd angular-helloworld-on-ec2/
-                    npx ng build --configuration production
-                 '''
+                sh 'npx ng build --configuration production'
             }
         }
 
