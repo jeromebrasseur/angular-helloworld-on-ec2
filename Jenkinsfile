@@ -37,7 +37,7 @@ pipeline {
                 sh 'sudo rm -rf /var/www/html/*'
 
                 // Copie du nouveau build (adapter le chemin si besoin)
-                sh 'sudo cp -r angular-helloworld-on-ec2/dist/angular-hello-world/browser/* /var/www/html/'
+                sh 'sudo cp -r dist/angular-hello-world/browser/* /var/www/html/'
             }
         }
     }
