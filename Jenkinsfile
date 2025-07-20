@@ -18,11 +18,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
-                    #!/bin/bash
-                    cd angular-helloworld-on-ec2/
-                    npm ci
-                 '''
+                sh 'npm ci'
             }
         }
 
