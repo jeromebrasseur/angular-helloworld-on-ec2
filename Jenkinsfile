@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh '''
                     cd angular-helloworld-on-ec2/'
-                    sh 'ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."'
+                    ng test --watch=false --browsers=ChromeHeadless || echo "Tests failed, continuing..."
                 '''
             }
         }
